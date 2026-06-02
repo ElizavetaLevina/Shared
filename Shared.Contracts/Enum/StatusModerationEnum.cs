@@ -6,9 +6,14 @@
     public enum StatusModerationEnum
     {
         /// <summary>
-        /// В ожидании
+        /// В ожидании отправки
         /// </summary>
         Pending,
+
+        /// <summary>
+        /// Отправлено на модерацию
+        /// </summary>
+        SentForModeration,
 
         /// <summary>
         /// Одобрено
