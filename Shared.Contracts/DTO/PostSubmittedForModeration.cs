@@ -1,4 +1,4 @@
-﻿using MassTransit;
+﻿using MassTransit.Topology;
 
 namespace Shared.Contracts.DTO
 {
