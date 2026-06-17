@@ -1,8 +1,6 @@
 name: Publish NuGet Package
 
 on:
-  push:
-    branches: [ "main" ]
   workflow_dispatch:
 
 permissions:
@@ -19,6 +17,34 @@ jobs:
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '8.0'
+
+      - name: Get current version
+        id: current_version
+        run: |
+          VERSION=$(dotnet msbuild -property:Version -noLogo -nologo | grep -oP 'Version\s*=\s*\K.*')
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "Current version: $VERSION"
+
+      - name: Check if version already exists in GitHub Packages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          VERSION="${{ steps.current_version.outputs.version }}"
+          PACKAGE_NAME="Shared.Contracts"
+          
+          RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" \
+            -H "Authorization: token $GITHUB_TOKEN" \
+            "https://nuget.pkg.github.com/ElizavetaLevina/package/$PACKAGE_NAME/$VERSION")
+          
+          if [ "$RESPONSE" = "200" ]; then
+            echo "ERROR: Version $VERSION already exists in GitHub Packages"
+            echo "Please update the version in your .csproj file"
+            exit 1
+          elif [ "$RESPONSE" = "404" ]; then
+            echo "Version $VERSION is new. Ready to publish."
+          else
+            echo "Could not verify version (HTTP $RESPONSE). Proceeding anyway."
+          fi
       
       - name: Pack
         run: dotnet pack --configuration Release --output ./nupkg
