@@ -21,7 +21,7 @@ jobs:
       - name: Get current version
         id: current_version
         run: |
-          VERSION=$(dotnet msbuild -property:Version -noLogo -nologo | grep -oP 'Version\s*=\s*\K.*')
+          VERSION=$(grep -oP '<Version>\K[^<]+' *.csproj | head -1)
           echo "version=$VERSION" >> $GITHUB_OUTPUT
           echo "Current version: $VERSION"
 
