@@ -23,6 +23,11 @@
         /// <summary>
         /// Отклонено
         /// </summary>
-        Rejected
+        Rejected,
+
+        /// <summary>
+        /// Не удалось отправить на модерацию
+        /// </summary>
+        Failed
     }
 }
