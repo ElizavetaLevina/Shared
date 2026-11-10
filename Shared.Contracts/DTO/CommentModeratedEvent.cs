@@ -5,6 +5,11 @@ namespace Shared.Contracts.DTO
     public class CommentModeratedEvent
     {
         /// <summary>
+        /// Уникальный идентификатор сообщения
+        /// </summary>
+        public Guid MessageId { get; set; }
+        
+        /// <summary>
         /// Идентификатор комментария на модерации
         /// </summary>
         public int CommentId { get; set; }
