@@ -1,8 +1,5 @@
-﻿using MassTransit.Topology;
-
-namespace Shared.Contracts.DTO
+﻿namespace Shared.Contracts.DTO
 {
-    [EntityName("PostSubmittedForModeration")]
     public class PostSubmittedForModeration
     {
         /// <summary>
