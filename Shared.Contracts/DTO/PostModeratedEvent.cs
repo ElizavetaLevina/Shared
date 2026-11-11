@@ -12,7 +12,7 @@ namespace Shared.Contracts.DTO
         /// <summary>
         /// Статус модерации
         /// </summary>
-        public StatusModerationEnum Status { get; set; }
+        public ModerationStatusEnum Status { get; set; }
 
         /// <summary>
         /// Причина отклонения

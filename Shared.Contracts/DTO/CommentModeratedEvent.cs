@@ -8,7 +8,7 @@ namespace Shared.Contracts.DTO
         /// Уникальный идентификатор сообщения
         /// </summary>
         public Guid MessageId { get; set; }
-        
+
         /// <summary>
         /// Идентификатор комментария на модерации
         /// </summary>
@@ -17,7 +17,7 @@ namespace Shared.Contracts.DTO
         /// <summary>
         /// Статус модерации
         /// </summary>
-        public StatusModerationEnum Status { get; set; }
+        public ModerationStatusEnum Status { get; set; }
 
         /// <summary>
         /// Причина отклонения
