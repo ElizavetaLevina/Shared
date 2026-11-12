@@ -11,6 +11,11 @@ namespace Shared.Contracts.Enum
         Pending,
 
         /// <summary>
+        /// Сообщение взято в работу
+        /// </summary>
+        Processing,
+
+        /// <summary>
         /// Сообщение отправлено
         /// </summary>
         Sent,
